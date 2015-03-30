@@ -1,0 +1,7 @@
+[core]
+	excludesfile = ~/.gitignore
+[ghq]
+	root = ~/src
+[user]
+	name = SOGO Haraguchi
+	email = harasou@pepabo.com

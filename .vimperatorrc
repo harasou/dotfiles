@@ -1,0 +1,22 @@
+"3.5 (created: 2012/08/04 00:41:20)
+
+source! /Users/harasou/.vimperatorrc.local
+
+" vim: set ft=vimperator:
+nnoremap j 5j
+nnoremap k 5k
+
+nnoremap <S-k> <C-p>
+nnoremap <S-j> <C-n>
+nnoremap <S-d> :tabonly<Cr>
+
+cnoremap <C-n> <Up>
+cnoremap <C-p> <Down>
+
+set hlsearch
+nnoremap <Esc><Esc> :nohlsearch<Cr>
+
+set hintchars=jkhlasdfgyuiopqwertnmzxcvb
+hi Hint		z-index:5000; font-size: 10pt; background: green; color: white; font-family: "Bitstream Vera Sans Mono",monaco,monospace;
+hi HintElem	background-color: #CCFFCC;  color: none;
+hi CmdLine	-a font-family:Ricty; font-size:20pt;
