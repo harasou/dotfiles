@@ -32,7 +32,7 @@ function make_dotbase(){
 }
 
 function linkdotfile(){
-  local f="$1"
+  local f="${1%/}"
   [ -L "$HOME/$f" ] && unlink "$HOME/$f"
   [ -e "$HOME/$f" ] && mv -v $HOME/$f "$BKUPDIR"
   ln -sv "$DOTBASE/$f" "$HOME/$f"
