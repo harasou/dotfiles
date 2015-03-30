@@ -16,7 +16,7 @@ BKUPDIR="$REPODIR/.backup/$(date +%Y%m%d%H%M%S)"
 DOTBASE=".dotfiles"
 
 function clone_repository(){
-  [ -d "$REPODIR" ] || git --recursive clone "$REPO" "$REPODIR"
+  [ -d "$REPODIR" ] || git clone --recursive "$REPO" "$REPODIR"
 }
 
 function make_backupdir(){
