@@ -10,7 +10,7 @@ DOTFILES="
 .vimrc
 "
 
-REPO="git@github.com:harasou/dotfiles.git"
+REPO="https://github.com/harasou/dotfiles.git"
 REPODIR="$HOME/src/github.com/harasou/dotfiles"
 BKUPDIR="$REPODIR/.backup/$(date +%Y%m%d%H%M%S)"
 DOTBASE=".dotfiles"
