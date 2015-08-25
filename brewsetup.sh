@@ -10,11 +10,9 @@ BREW_PACKAGES="
   git
   go
   jq
-  node
   openssl
   packer
   rbenv
-  sshpass
   tig
   vim
   motemen/ghq/ghq
@@ -24,6 +22,7 @@ BREW_PACKAGES="
 BREW_CASK_PACKAGES="
   alfred
   appcleaner
+  dockertoolbox
   dropbox
   firefox
   google-chrome
@@ -32,13 +31,11 @@ BREW_CASK_PACKAGES="
   keepassx
   limechat
   macvim
-  marked
   remote-desktop-connection
   scroll-reverser
   slack
   tunnelblick
   vagrant
-  virtualbox
   wireshark
   xtrafinder
 "

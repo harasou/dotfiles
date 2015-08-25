@@ -41,6 +41,9 @@ nnoremap  <Esc><Esc>  :<C-u>set nohlsearch<CR><Esc>
 
 
 " move
+nnoremap  j           gj
+nnoremap  k           gk
+
 nnoremap  z           z<CR>
 nnoremap  <C-e>       <C-e>j
 nnoremap  <C-y>       <C-y>k
@@ -70,7 +73,10 @@ set nowrap
 set scrolloff=1
 set clipboard+=unnamed
 set virtualedit=all
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set encoding=utf8
+" set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
+set fileformats=unix,dos,mac
+set backspace=indent,eol,start
 set wildmenu
 set showcmd
 set noswapfile
