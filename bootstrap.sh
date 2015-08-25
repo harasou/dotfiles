@@ -10,13 +10,16 @@ DOTFILES="
 .vimrc
 "
 
-REPO="https://github.com/harasou/dotfiles.git"
+REPO="harasou/dotfiles.git"
 REPODIR="$HOME/src/github.com/harasou/dotfiles"
 BKUPDIR="$REPODIR/.backup/$(date +%Y%m%d%H%M%S)"
 DOTBASE=".dotfiles"
 
 function clone_repository(){
-  [ -d "$REPODIR" ] || git clone --recursive "$REPO" "$REPODIR"
+  if [ ! -d "$REPODIR" ] ; then
+    git clone --recursive "https://github.com/$REPO" "$REPODIR"
+    (cd $_ && git remote set-url origin git@github.com:$REPO)
+  fi
 }
 
 function make_backupdir(){
