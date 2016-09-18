@@ -1,0 +1,59 @@
+tap homebrew/core
+brew ansible
+brew clang-format
+brew ghq
+brew git
+brew go
+brew jq
+brew mercurial
+brew nghttp2
+brew openssl
+brew packer
+brew peco
+brew tcpreplay
+brew tig
+brew tree
+brew vim
+
+tap neovim/neovim
+brew neovim
+
+tap rcmdnk/file
+brew brew-file
+
+tap sanemat/font
+brew ricty
+
+tap argon/mas
+brew mas
+
+tap caskroom/cask
+cask alfred
+cask appcleaner
+cask boostnote
+cask chicken
+cask cyberduck
+cask docker
+cask dropbox
+cask firefox
+cask google-chrome
+cask hosts
+cask iterm2
+cask scroll-reverser
+cask slack
+cask tunnelblick
+cask vagrant
+cask virtualbox
+cask vivaldi
+cask xtrafinder
+
+appstore 409183694 Keynote
+appstore 607997198 Marko
+appstore 409203825 Numbers
+appstore 928941247 OTP Manager
+appstore 409201541 Pages
+appstore 445189367 PopClip
+appstore 880001334 Reeder
+appstore 425955336 Skitch
+appstore 957734279 TogglDesktop
+appstore 497799835 Xcode

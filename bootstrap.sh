@@ -3,6 +3,7 @@ set -e
  
 DOTFILES="
 .bash_profile
+.brewfile
 .gitconfig
 .gvimrc
 .vim/
