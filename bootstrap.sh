@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 set -e
  
 DOTFILES="
@@ -12,7 +12,7 @@ DOTFILES="
 "
 
 REPO="harasou/dotfiles.git"
-REPODIR="$HOME/src/github.com/harasou/dotfiles"
+REPODIR="$HOME/src/github.com/${REPO%.git}"
 BKUPDIR="$REPODIR/.backup/$(date +%Y%m%d%H%M%S)"
 DOTBASE=".dotfiles"
 

@@ -10,8 +10,15 @@ if which -s brew ; then
   PATH=/usr/local/bin:$PATH
 fi
 
-if which -s ghq ; then
-  alias gl='repo=$(ghq list|peco);[ -z $repo ] || { eval cd "$(git config ghq.root)/$repo" && clear && pwd ; }'
+# ghq
+which -s ghq && ghq=true || ghq=false
+
+if $ghq && which -s peco ; then
+  alias gl='repo="$(ghq root)/$(ghq list|peco)"; [ -d "$repo" ] && { cd "$repo" && clear && pwd ; }'
+fi
+
+# ssh
+if $ghq && [ -x "$(ghq list -p sshwrapper)/ssh.sh" ] ; then
   alias ssh="$(ghq list -p sshwrapper)/ssh.sh"
 fi
 
@@ -20,6 +27,3 @@ if [ -x "$HOME/.anyenv/bin/anyenv" ] ; then
   PATH="$HOME/.anyenv/bin:$PATH"
   eval "$(anyenv init -)"
 fi
-
-# docker
-#eval $(docker-machine env default)
