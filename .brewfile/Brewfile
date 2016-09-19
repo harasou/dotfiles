@@ -22,7 +22,7 @@ tap rcmdnk/file
 brew brew-file
 
 tap sanemat/font
-brew ricty
+brew ricty --powerline --vim-powerline
 
 tap argon/mas
 brew mas
@@ -41,6 +41,7 @@ cask hosts
 cask iterm2
 cask scroll-reverser
 cask slack
+cask spectacle
 cask tunnelblick
 cask vagrant
 cask virtualbox
@@ -48,12 +49,9 @@ cask vivaldi
 cask xtrafinder
 
 appstore 409183694 Keynote
-appstore 607997198 Marko
 appstore 409203825 Numbers
 appstore 928941247 OTP Manager
-appstore 409201541 Pages
 appstore 445189367 PopClip
 appstore 880001334 Reeder
-appstore 425955336 Skitch
 appstore 957734279 TogglDesktop
 appstore 497799835 Xcode

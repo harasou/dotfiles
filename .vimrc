@@ -22,6 +22,8 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'Align'
 NeoBundle 'harasou/quickmemo.vim'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'tpope/vim-fugitive', { 'augroup' : 'fugitive'}
 call neobundle#end()
 filetype plugin indent on
 NeoBundleCheck
@@ -38,6 +40,8 @@ nnoremap  *           :<C-u>set hlsearch<CR>*
 nnoremap  /           :<C-u>set hlsearch<CR>/
 nnoremap  ?           :<C-u>set hlsearch<CR>?
 nnoremap  <Esc><Esc>  :<C-u>set nohlsearch<CR><Esc>
+nnoremap  <C-]>       g<C-]>
+nnoremap  v<C-]>      :vsp<CR><C-w><C-w>:exec("tag ".expand("<cword>"))<CR>
 
 
 " move
@@ -73,8 +77,8 @@ set nowrap
 set scrolloff=1
 set clipboard+=unnamed
 set virtualedit=all
+set laststatus=2
 set encoding=utf8
-" set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
 set fileformats=unix,dos,mac
 set backspace=indent,eol,start
 set wildmenu
@@ -107,3 +111,56 @@ let g:Align_xstrlen=3
 " quickmemo
 let quickmemo_save_path = "~/Dropbox/Memo/%Y/%m"
 let quickmemo_list_unite_option = "-no-split -auto-preview"
+
+" lightline
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'filename' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'LightLineFugitive',
+      \   'readonly': 'LightLineReadonly',
+      \   'modified': 'LightLineModified',
+      \   'filename': 'LightLineFilename'
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
+
+function! LightLineModified()
+  if &filetype == "help"
+    return ""
+  elseif &modified
+    return "+"
+  elseif &modifiable
+    return ""
+  else
+    return ""
+  endif
+endfunction
+
+function! LightLineReadonly()
+  if &filetype == "help"
+    return ""
+  elseif &readonly
+    return "⭤"
+  else
+    return ""
+  endif
+endfunction
+
+function! LightLineFugitive()
+  if exists("*fugitive#head")
+    let branch = fugitive#head()
+    return branch !=# '' ? '⭠ '.branch : ''
+  endif
+  return ''
+endfunction
+
+function! LightLineFilename()
+  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+       \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+       \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+endfunction
