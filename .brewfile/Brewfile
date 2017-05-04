@@ -15,9 +15,6 @@ brew tig
 brew tree
 brew vim
 
-tap neovim/neovim
-brew neovim
-
 tap rcmdnk/file
 brew brew-file
 
@@ -36,6 +33,7 @@ cask cyberduck
 cask docker
 cask dropbox
 cask firefox
+cask franz
 cask google-chrome
 cask hosts
 cask iterm2
@@ -43,15 +41,18 @@ cask scroll-reverser
 cask slack
 cask spectacle
 cask tunnelblick
+cask typora
 cask vagrant
 cask virtualbox
 cask vivaldi
-cask xtrafinder
+cask wireshark
 
 appstore 409183694 Keynote
+appstore 409201541 Pages
 appstore 409203825 Numbers
-appstore 928941247 OTP Manager
+appstore 412448059 ForkLift
+appstore 414298354 ToyViewer
 appstore 445189367 PopClip
 appstore 880001334 Reeder
+appstore 928941247 OTP Manager
 appstore 957734279 TogglDesktop
-appstore 497799835 Xcode

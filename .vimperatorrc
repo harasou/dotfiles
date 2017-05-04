@@ -14,6 +14,7 @@ cnoremap <C-n> <Up>
 cnoremap <C-p> <Down>
 
 set hlsearch
+set complete=slbh
 nnoremap <Esc><Esc> :nohlsearch<Cr>
 
 set hintchars=jkhlasdfgyuiopqwertnmzxcvb
