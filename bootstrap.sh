@@ -14,8 +14,8 @@ DOTBASE=".dotfiles"
 
 # Clone Repository
 if [ ! -d "$REPODIR" ] ; then
-  git clone "https://github.com/$REPO" "$REPODIR"
-  (cd $_ && git remote set-url origin git@github.com:$REPO)
+  git clone "https://github.com/$GITHUB" "$REPODIR"
+  (cd $_ && git remote set-url origin git@github.com:$GITHUB)
 fi
 
 # Make BackupDir
