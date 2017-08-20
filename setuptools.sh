@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 #
 # brew
 #
@@ -11,7 +10,7 @@ fi
 #
 # brew-file
 #
-if ! brew list --full-name | grep -q rcmdnk/file/brew-file ; then
+if ! brew list rcmdnk/file/brew-file >/dev/null 2>&1 ; then
     brew install rcmdnk/file/brew-file
 fi
 
@@ -23,6 +22,6 @@ brew file install
 #
 # anyenv
 #
-if [ ! -x "$HOME/.anyenv/bin/anyenv" ] ; then
+if [ ! -x "$HOME/.anyenv/bin/anyenv" ]; then
     git clone --depth=1 https://github.com/riywo/anyenv $HOME/.anyenv
 fi

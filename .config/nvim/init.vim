@@ -1,33 +1,34 @@
-" neobundle
-if has('vim_starting')
-  if &compatible
-    set nocompatible
-  endif
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+if &compatible
+  set nocompatible
 endif
-call neobundle#begin(expand('~/.vim/bundle'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin'  : 'make -f make_cygwin.mak',
-      \     'mac'     : 'make -f make_mac.mak',
-      \     'unix'    : 'gmake -f make_unix.mak',
-      \    },
-      \ }
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'Align'
-NeoBundle 'harasou/quickmemo.vim'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'tpope/vim-fugitive', { 'augroup' : 'fugitive'}
-call neobundle#end()
-filetype plugin indent on
-NeoBundleCheck
 
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_self = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+if !isdirectory(s:dein_self)
+  execute '!git clone https://github.com/Shougo/dein.vim' s:dein_self
+endif
+execute 'set runtimepath^=' . s:dein_self
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+  call dein#add(s:dein_self)
+  call dein#add('Shougo/denite.nvim')
+  call dein#add('harasou/quickmemo.vim')
+  call dein#add('itchyny/lightline.vim')
+  call dein#add('Shougo/deoplete.nvim')
+  call dein#add('zchee/deoplete-go')
+  call dein#add('benekastah/neomake')
+  call dein#add('fatih/vim-go')
+  call dein#end()
+  call dein#save_state()
+endif
+
+filetype plugin indent on
+syntax enable
+
+if has('vim_starting') && dein#check_install()
+  call dein#install()
+endif
 
 " search
 set noincsearch
@@ -65,10 +66,6 @@ vnoremap  <           <gv
 vnoremap  >           >gv
 
 
-" help
-nnoremap <C-h> :<C-u>vertical belowright help<Space><C-r><C-w>
-
-
 " options
 syntax on
 set number
@@ -91,26 +88,17 @@ set tabstop=4
 set softtabstop=4
 
 
-" unite
-nnoremap  [unite]  <Nop>
-nmap      ;        [unite]
-nnoremap  <silent> [unite]b    :<C-u>Unite -no-split buffer<CR>
-nnoremap  <silent> [unite]d    :<C-u>UniteWithBufferDir -no-split file<CR>
-nnoremap  <silent> [unite]f    :<C-u>Unite -no-split file<CR>
-nnoremap  <silent> [unite]l    :<C-u>Unite -no-split line<CR>
-nnoremap  <silent> [unite]m    :<C-u>Unite -no-split file_mru<CR>
-nnoremap  <silent> [unite]u    :<C-u>Unite -no-split<Space>
-
-" surround
-nmap s  <Plug>Ysurround
-nmap ss <Plug>Yssurround
-
-" align
-let g:Align_xstrlen=3
+" denite
+nnoremap  [denite]  <Nop>
+nmap      ;        [denite]
+nnoremap  <silent> [denite]b    :<C-u>Denite -auto-preview -mode=normal buffer<CR>
+nnoremap  <silent> [denite]f    :<C-u>DeniteProjectDir file_rec<CR>
+nnoremap  <silent> [denite]g    :<C-u>Denite grep -mode=normal<CR>
+nnoremap  <silent> [denite]l    :<C-u>Denite line<CR>
+nnoremap  <silent> [denite]d    :<C-u>Denite <Space>
 
 " quickmemo
-let quickmemo_save_path = "~/Dropbox/Memo/%Y/%m"
-let quickmemo_list_unite_option = "-no-split -auto-preview"
+let quickmemo_save_path = "~/Dropbox/Memo/%Y/%m" 
 
 " lightline
 let g:lightline = {
@@ -164,3 +152,6 @@ function! LightLineFilename()
        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
+
+
+let g:deoplete#enable_at_startup = 1

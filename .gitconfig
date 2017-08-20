@@ -1,7 +1,10 @@
 [core]
 	excludesfile = ~/.gitignore
+	quotepath = false
 [ghq]
 	root = ~/src
 [user]
 	name = SOGO Haraguchi
 	email = harasou@pepabo.com
+[fetch]
+    prune = true

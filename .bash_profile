@@ -1,6 +1,9 @@
 
 alias ll='ls -lF'
 alias la='ls -alF'
+alias vim='nvim'
+alias gotest='go test $(go list ./... | grep -v /vendor/)'
+alias opengithub='open $(git remote get-url origin|sed "s/^ssh/http/;s/[^/]*@//")'
 
 export GOPATH=$HOME
 export PATH=$HOME/bin:$PATH
@@ -14,7 +17,7 @@ fi
 which -s ghq && ghq=true || ghq=false
 
 if $ghq && which -s peco ; then
-  alias gl='repo="$(ghq root)/$(ghq list|peco)"; [ -d "$repo" ] && { cd "$repo" && clear && pwd ; }'
+  alias gl='repo="$(ghq list|peco)"; [ -n "$repo" ] && { cd "$(ghq root)/$repo" && clear && pwd ; }'
 fi
 
 # ssh

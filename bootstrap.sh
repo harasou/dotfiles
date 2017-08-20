@@ -1,51 +1,41 @@
-#!/bin/bash -x
-set -e
+#!/bin/bash -xe
  
+GITHUB="harasou/dotfiles.git"
 DOTFILES="
 .bash_profile
 .brewfile
+.config/nvim/
 .gitconfig
-.gvimrc
-.vim/
-.vimperatorrc
-.vimrc
 "
 
-REPO="harasou/dotfiles.git"
-REPODIR="$HOME/src/github.com/${REPO%.git}"
+REPODIR="$HOME/src/github.com/${GITHUB%.git}"
 BKUPDIR="$REPODIR/.backup/$(date +%Y%m%d%H%M%S)"
 DOTBASE=".dotfiles"
 
-function clone_repository(){
-  if [ ! -d "$REPODIR" ] ; then
-    git clone --recursive "https://github.com/$REPO" "$REPODIR"
-    (cd $_ && git remote set-url origin git@github.com:$REPO)
-  fi
-}
+# Clone Repository
+if [ ! -d "$REPODIR" ] ; then
+  git clone "https://github.com/$REPO" "$REPODIR"
+  (cd $_ && git remote set-url origin git@github.com:$REPO)
+fi
 
-function make_backupdir(){
-  [ -d "$BKUPDIR" ] || mkdir -p "$BKUPDIR"
-}
+# Make BackupDir
+[ -d "$BKUPDIR" ] || mkdir -p "$BKUPDIR"
 
-function make_dotbase(){
-  local dotd="$HOME/$DOTBASE"
-  [ "$dotd" = "$REPODIR" ] && return
-  [ -L "$dotd" ] && unlink "$dotd"
-  [ -e "$dotd" ] && mv -v "$dotd" "$BKUPDIR"
-  ln -sv "$REPODIR" "$dotd"
-}
+# Make DotbaseDir
+DOTBASEDIR="$HOME/$DOTBASE"
+[ "$DOTBASEDIR" = "$REPODIR" ] && return
+[ -L "$DOTBASEDIR" ] && unlink "$DOTBASEDIR"
+[ -e "$DOTBASEDIR" ] && mv -v "$DOTBASEDIR" "$BKUPDIR"
+ln -sv "$REPODIR" "$DOTBASEDIR"
 
+# Link dotfiles
 function linkdotfile(){
   local f="${1%/}"
+  [ $(dirname $f) != "." ] && { mkdir -p "$HOME/$(dirname $f)"; DOTBASE="$DOTBASEDIR"; } 
   [ -L "$HOME/$f" ] && unlink "$HOME/$f"
   [ -e "$HOME/$f" ] && mv -v $HOME/$f "$BKUPDIR"
   ln -sv "$DOTBASE/$f" "$HOME/$f"
 }
-
-
-clone_repository
-make_backupdir
-make_dotbase
 
 for dotfile in $DOTFILES
 do

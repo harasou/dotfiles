@@ -5,15 +5,14 @@ brew ghq
 brew git
 brew go
 brew jq
+brew mas
 brew mercurial
+brew neovim
 brew nghttp2
 brew openssl
 brew packer
 brew peco
-brew tcpreplay
 brew tig
-brew tree
-brew vim
 
 tap rcmdnk/file
 brew brew-file
@@ -21,10 +20,6 @@ brew brew-file
 tap sanemat/font
 brew ricty --powerline --vim-powerline
 
-tap argon/mas
-brew mas
-
-tap caskroom/cask
 cask alfred
 cask appcleaner
 cask boostnote
@@ -47,12 +42,12 @@ cask virtualbox
 cask vivaldi
 cask wireshark
 
-appstore 409183694 Keynote
-appstore 409201541 Pages
-appstore 409203825 Numbers
 appstore 412448059 ForkLift
-appstore 414298354 ToyViewer
+appstore 409183694 Keynote
+appstore 409203825 Numbers
+appstore 928941247 OTP Manager
+appstore 409201541 Pages
 appstore 445189367 PopClip
 appstore 880001334 Reeder
-appstore 928941247 OTP Manager
 appstore 957734279 TogglDesktop
+appstore 414298354 ToyViewer
