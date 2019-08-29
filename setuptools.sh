@@ -23,5 +23,6 @@ brew file install
 # anyenv
 #
 if [ ! -x "$HOME/.anyenv/bin/anyenv" ]; then
-    git clone --depth=1 https://github.com/riywo/anyenv $HOME/.anyenv
+    git clone https://github.com/riywo/anyenv $HOME/.anyenv
+    git clone https://github.com/znz/anyenv-update.git $HOME/.anyenv/plugins/anyenv-update
 fi
