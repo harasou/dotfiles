@@ -28,10 +28,10 @@ cask boostnote
 cask docker
 cask dropbox
 cask firefox
+cask franz
 cask google-chrome
-cask hosts
+cask google-cloud-sdk
 cask iterm2
-cask scroll-reverser
 cask sequel-pro
 cask spectacle
 cask tunnelblick
@@ -45,8 +45,10 @@ cask wireshark
 appstore 409183694 Keynote
 appstore 409201541 Pages
 appstore 409203825 Numbers
-appstore 412448059 ForkLift
 appstore 414298354 ToyViewer
+appstore 441258766 Magnet
 appstore 445189367 PopClip
 appstore 880001334 Reeder
-appstore 957734279 TogglDesktop
+appstore 957734279 Toggl Track
+appstore 1233965871 ScreenBrush
+appstore 1429033973 RunCat
