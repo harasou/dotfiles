@@ -1,10 +1,12 @@
 tap homebrew/core
 
-brew ansible
+brew asdf
 brew clang-format
 brew direnv
+brew gh
 brew ghq
 brew git
+brew hugo
 brew jq
 brew mas
 brew mercurial
@@ -13,31 +15,24 @@ brew nghttp2
 brew openssl
 brew packer
 brew peco
+brew telnet
 brew tig
 
 brew genkiroid/homebrew-cert/cert
 brew rcmdnk/file/brew-file
 
-tap sanemat/font
-brew ricty --with-powerline
-
-cask 1password
 cask alfred
 cask appcleaner
-cask boostnote
 cask docker
-cask dropbox
-cask firefox
 cask franz
 cask google-chrome
 cask google-cloud-sdk
+cask google-drive
 cask iterm2
+cask notable
 cask sequel-pro
 cask spectacle
 cask tunnelblick
-cask typora
-cask vagrant
-cask virtualbox
 cask visual-studio-code
 cask vivaldi
 cask wireshark
@@ -48,7 +43,5 @@ appstore 409203825 Numbers
 appstore 414298354 ToyViewer
 appstore 441258766 Magnet
 appstore 445189367 PopClip
-appstore 880001334 Reeder
-appstore 957734279 Toggl Track
 appstore 1233965871 ScreenBrush
 appstore 1429033973 RunCat

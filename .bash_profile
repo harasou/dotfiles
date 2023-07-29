@@ -1,40 +1,33 @@
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 alias ll='ls -lF'
-alias la='ls -alF'
 alias vim='nvim'
-alias opengithub='open $(git remote get-url origin|sed "s/^ssh/http/;s/[^/]*@//")'
-alias brew="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin brew" # for brew doctor
+alias gitopen='open $(git remote get-url origin|sed "s/^ssh/http/;s/[^/]*@//")'
 
-export GOPATH=$HOME
+GOBIN=$HOME/bin
 export PATH=$HOME/bin:$PATH
 
 # brew
-if which -s brew ; then
-  PATH=/usr/local/sbin:/usr/local/bin:$PATH
-fi
+if test -x /opt/homebrew/bin/brew; then
+  eval $(/opt/homebrew/bin/brew shellenv)
 
-# ghq
-which -s ghq && ghq=true || ghq=false
-
-if $ghq && which -s peco ; then
-  alias gl='repo="$(ghq list|peco)"; [ -n "$repo" ] && { cd "$(ghq root)/$repo" && clear && pwd ; }'
+  test -e /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc && . $_
+  test -e /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc && . $_
 fi
 
 # direnv
 which -s direnv && eval "$(direnv hook bash)"
 
-# anyenv
-if [ -x "$HOME/.anyenv/bin/anyenv" ] ; then
-  PATH="$HOME/.anyenv/bin:$PATH"
-  eval "$(anyenv init -)"
+# asdf
+if which -s asdf ; then
+  . /opt/homebrew/opt/asdf/asdf.sh
+  . /opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash
 fi
 
-# bash-completaion
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+# ghq
+if which -s ghq && which -s peco ; then
+  alias gl='repo="$(ghq list|peco)"; [ -n "$repo" ] && { cd "$(ghq root)/$repo" && clear && pwd ; }'
+fi
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/harasou/google-cloud-sdk/path.bash.inc' ]; then source '/Users/harasou/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/harasou/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/harasou/google-cloud-sdk/completion.bash.inc'; fi
-export PATH="/usr/local/opt/terraform@0.11/bin:$PATH"
+# secret
+test -e .env_secret && . $_

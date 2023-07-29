@@ -8,3 +8,5 @@
 	email = harasou5@gmail.com
 [fetch]
     prune = true
+[init]
+	defaultBranch = main

@@ -13,7 +13,7 @@ nnoremap  <silent> [denite]d    :<C-u>Denite <Space>
 [[plugins]]
 repo = 'harasou/quickmemo.vim'
 hook_add = '''
-let quickmemo_save_path = "~/Dropbox/Memo/%Y/%m"
+let quickmemo_save_path = "~/.notable/%Y/%m"
 '''
 
 [[plugins]]

@@ -1,36 +1,23 @@
-" dein settings {{{
-if &compatible
-  set nocompatible
+" vim-plug なかったら落としてくる
+if empty(glob('$HOME/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-let s:config_home = empty($XDG_CONFIG_HOME) ? expand('~/.config') : $XDG_CONFIG_HOME
-let s:config_dir = s:config_home . '/nvim'
-let s:toml = s:config_dir . '/dein.toml'
+" 足りないプラグインがあれば :PlugInstall を実行
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
 
-let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
-let s:dein_dir = s:cache_home . '/dein'
-let s:dein_self = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+call plug#begin('$HOME/.local/share/nvim/plugged')
+Plug 'itchyny/lightline.vim'
+Plug 'lambdalisue/fern.vim'
+Plug 'harasou/quickmemo.vim'
+call plug#end()
 
-if !isdirectory(s:dein_self)
-  execute '!git clone https://github.com/Shougo/dein.vim' s:dein_self
-endif
-execute 'set runtimepath^=' . s:dein_self
-
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
-  call dein#add(s:dein_self)
-  call dein#load_toml(s:toml, {'lazy': 0})
-  call dein#end()
-  call dein#save_state()
-endif
-
-if has('vim_starting') && dein#check_install()
-  call dein#install()
-endif
-" }}}
-
-let g:python_host_prog = $PYENV_ROOT . '/shims/python'
-let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
+nnoremap <silent> <Leader>e :Fern . -drawer -width=40 -toggle<CR>
+let quickmemo_save_path = "~/.notable/%Y/%m"
 
 " search
 set noincsearch
@@ -90,7 +77,3 @@ set expandtab
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
-
-" bug https://github.com/neovim/neovim/pull/6969
-set ttimeout
-set ttimeoutlen=50
