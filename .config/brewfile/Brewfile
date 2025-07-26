@@ -1,13 +1,30 @@
 tap homebrew/core
+tap homebrew/cask-fonts
 
+brew 1password-cli
 brew asdf
+brew bash
+brew bash-completion
+brew brew-file
+brew cert
 brew clang-format
+brew consul-template
+brew coreutils
+brew curl
 brew direnv
+brew font-Hack-nerd-font
 brew gh
 brew ghq
 brew git
+brew git-lfs
 brew hugo
 brew jq
+brew k9s
+brew kagiana
+brew kubernetes-cli
+brew kubeseal
+brew kustomize
+brew lazygit
 brew mas
 brew mercurial
 brew neovim
@@ -15,27 +32,41 @@ brew nghttp2
 brew openssl
 brew packer
 brew peco
+brew runn
+brew sshpass
+brew starship
 brew telnet
 brew tig
+brew usql
 
 brew genkiroid/homebrew-cert/cert
+brew hudochenkov/sshpass/sshpass
 brew rcmdnk/file/brew-file
 
 cask alfred
 cask appcleaner
-cask docker
-cask franz
+cask arc
+cask docker-desktop
+cask firefox
+cask font-hack-nerd-font
+cask gcloud-cli
 cask google-chrome
 cask google-cloud-sdk
 cask google-drive
 cask iterm2
+cask lens
+cask microsoft-remote-desktop
+cask multipass
 cask notable
+cask obsidian
+cask sequel-ace
 cask sequel-pro
 cask spectacle
 cask tunnelblick
 cask visual-studio-code
 cask vivaldi
-cask wireshark
+cask wireshark-app
+cask zoom
 
 appstore 409183694 Keynote
 appstore 409201541 Pages

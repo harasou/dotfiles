@@ -4,7 +4,6 @@ alias ll='ls -lF'
 alias vim='nvim'
 alias gitopen='open $(git remote get-url origin|sed "s/^ssh/http/;s/[^/]*@//")'
 
-GOBIN=$HOME/bin
 export PATH=$HOME/bin:$PATH
 
 # brew
@@ -19,15 +18,22 @@ fi
 which -s direnv && eval "$(direnv hook bash)"
 
 # asdf
-if which -s asdf ; then
-  . /opt/homebrew/opt/asdf/asdf.sh
-  . /opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash
+if which -s asdf; then
+  PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+  . <(asdf completion bash)
 fi
 
 # ghq
-if which -s ghq && which -s peco ; then
+if which -s ghq && which -s peco; then
   alias gl='repo="$(ghq list|peco)"; [ -n "$repo" ] && { cd "$(ghq root)/$repo" && clear && pwd ; }'
+fi
+
+# bash-competion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
 fi
 
 # secret
 test -e .env_secret && . $_
+
+eval "$(starship init bash)"
